@@ -1,0 +1,21 @@
+{
+  "name": "betluck-api",
+  "version": "1.0.0",
+  "description": "An API to tournaments of bets.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "competitions",
+    "bets",
+    "sports",
+    "api"
+  ],
+  "author": "matz",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "lodash": "^4.17.2"
+  }
+}
