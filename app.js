@@ -8,17 +8,20 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     session = require('express-session'),
     morgan = require('morgan'),
-    configDB = require('./config/database.js'),
+    config = require('./config/main'),
     app = express();
 
 const API_PORT = process.env.PORT || 3000;
 
-
-mongoose.connect(configDB.url);
+mongoose.connect(config.database);
 var db = mongoose.connection;
 
+// log requests to console
 app.use(morgan('dev'));
+
 app.use(cookieParser());
+
+// use body-parser to get POST requests for API use
 app.use(bodyParser.urlencoded({
     extended: true
 }));
