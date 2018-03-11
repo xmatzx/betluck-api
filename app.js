@@ -11,7 +11,12 @@ var express = require('express'),
     config = require('./config/main'),
     app = express();
 
-const API_PORT = process.env.PORT || 3000;
+// loading middlewares
+var cors = require('./middlewares/cors');
+
+const API_PORT = config.port;
+
+app.use(cors);
 
 mongoose.connect(config.database);
 var db = mongoose.connection;
