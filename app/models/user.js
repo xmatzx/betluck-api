@@ -1,7 +1,7 @@
-var mongoose = require('mongoose'),
+let mongoose = require('mongoose'),
     bcrypt = require('bcrypt');
 
-var userSchema = mongoose.Schema({
+let userSchema = mongoose.Schema({
     username: {
         type: String,
         required: true
@@ -15,6 +15,14 @@ var userSchema = mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    isDeleted: {
+        type: Boolean,
+        default: false
     }
 });
 
@@ -41,7 +49,7 @@ userSchema.methods.comparePassword = function (password, cb) {
 };
 
 userSchema.pre('save', function (next) {
-    var user = this;
+    let user = this;
     if (this.isModified('password') || this.isNew) {
         user.password = user.generateHash(user.password);
         next();
