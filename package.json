@@ -18,9 +18,11 @@
   "dependencies": {
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
+    "compression": "^1.7.3",
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
     "express-session": "^1.15.5",
+    "helmet": "^3.13.0",
     "jsonwebtoken": "^8.2.0",
     "lodash": "^4.17.2",
     "mongodb": "^2.2.16",

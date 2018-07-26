@@ -1,25 +1,26 @@
 'use strict';
 
-var express = require('express'),
+let express = require('express'),
     mongo = require('mongodb'),
     mongoose = require('mongoose'),
     passport = require('passport'),
     bodyParser = require('body-parser'),
+    compression = require("compression"),
     cookieParser = require('cookie-parser'),
     session = require('express-session'),
     morgan = require('morgan'),
+    helmet = require("helmet"),
     config = require('./config/main'),
     app = express();
 
-// loading middlewares
-var cors = require('./middlewares/cors');
-
 const API_PORT = config.port;
 
-app.use(cors);
-
 mongoose.connect(config.database);
-var db = mongoose.connection;
+let db = mongoose.connection;
+
+// loading middlewares
+let cors = require('./middlewares/cors');
+app.use(cors);
 
 // log requests to console
 app.use(morgan('dev'));
@@ -32,10 +33,14 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+app.use(compression());
+
+app.use(helmet());
+
 // required for passport
 app.use(session({
     secret: 'ilovescotchscotchyscotchscotch',
-    resave: true,
+    resave: false,
     saveUninitialized: true
 })); // session secret
 app.use(passport.initialize());
