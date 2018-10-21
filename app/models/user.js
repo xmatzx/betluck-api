@@ -20,6 +20,10 @@ let userSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    isActive: {
+        type: Boolean,
+        default: false
+    },
     isDeleted: {
         type: Boolean,
         default: false
