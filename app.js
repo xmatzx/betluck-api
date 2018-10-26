@@ -1,15 +1,17 @@
 'use strict';
 
-let express = require('express'),
+const express = require('express'),
     mongo = require('mongodb'),
     mongoose = require('mongoose'),
     passport = require('passport'),
     bodyParser = require('body-parser'),
-    compression = require("compression"),
+    compression = require('compression'),
     cookieParser = require('cookie-parser'),
     session = require('express-session'),
     morgan = require('morgan'),
-    helmet = require("helmet"),
+    helmet = require('helmet'),
+    expressValidator = require('express-validator'),
+    cors = require('./middlewares/cors'),
     config = require('./config/main'),
     app = express();
 
@@ -19,7 +21,6 @@ mongoose.connect(config.database);
 let db = mongoose.connection;
 
 // loading middlewares
-let cors = require('./middlewares/cors');
 app.use(cors);
 
 // log requests to console
@@ -32,6 +33,8 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
+
+app.use(expressValidator());
 
 app.use(compression());
 
