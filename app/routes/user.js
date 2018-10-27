@@ -1,6 +1,6 @@
 let express = require('express'),
     router = express.Router(),
-    controller = require('../controllers/userController');
+    controller = require('../controllers/user');
 
 module.exports = function (passport) {
     router.get('/', passport.authenticate('jwt', {session: false}), controller.getAll);

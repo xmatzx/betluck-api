@@ -1,6 +1,5 @@
-let User = require('../models/user');
-
-const userController = {};
+const User = require('../models/user'),
+    userController = {};
 
 userController.getAll = (req, res) => {
     User.find({}, {password: 0, isDeleted: 0}).then((users) => {
