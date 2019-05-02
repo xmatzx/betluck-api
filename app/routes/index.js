@@ -1,7 +1,7 @@
 const _ = require('lodash'),
     fs = require('fs'),
     excluded = ['index.js'],
-    privates = ['game.js', 'user.js', 'team.js'];
+    privates = ['game.js', 'user.js', 'team.js', 'competition.js'];
 
 module.exports = function (app, passport) {
     fs.readdirSync(__dirname).forEach(function (file) {
