@@ -1,4 +1,4 @@
-var express = require('express'),
+const express = require('express'),
     router = express.Router(),
     User = require('../models/user'),
     jwt = require('jsonwebtoken'),
@@ -8,7 +8,7 @@ router.post('/signup', function (req, res) {
     if (!req.body.email || !req.body.password || !req.body.username) {
         res.json({success: false, message: 'Please enter an username, email and password.'});
     } else {
-        var newUser = new User({
+        let newUser = new User({
             email: req.body.email,
             password: req.body.password,
             username: req.body.username
@@ -39,7 +39,7 @@ router.post('/login', function (req, res) {
             user.comparePassword(req.body.password, function (err, isMatch) {
                 if (isMatch && !err) {
                     // create token
-                    var token = jwt.sign(user.toObject(), config.secret, {
+                    const token = jwt.sign(user.toObject(), config.secret, {
                         expiresIn: 10080 //in seconds
                     });
                     res.json({success: true, token: 'bearer ' + token});
